@@ -3,21 +3,39 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'my-app',
     template: `
-        <div class="well">
-        <h3>Example</h3>
+        <style>
+            button {
+                background-color: #4CAF50; border: none; 
+                color: white; 
+                padding: 5px 5px; 
+                text-align: center; text-decoration: none;
+                display: inline-block;font-size: 12px;
+            }
+            profile-page {
+                margin: 0 0 0 55px; width: auto; 
+                font-family: helvetica, arial, sans-serif; 
+                line-height: 1.2em;
+            }
+        </style>
+        <div class="well profile-page">
+        <p>Example</p>
             <input #textbox type="text" ngModel="fontcolor" required>
-            <button (click)="logText(textbox.value)">Update Color</button>
-        <p #part1 class="box" [style.color]="fontcolor">
+            <button class='button' (click)="logText(textbox.value)">Update Color</button>
+        <h1 #part1 class="box" [style.color]="fontcolor">
             Hello World! 
-        </p>
-            <h4>Log <button (click)="log=''">Clear</button></h4>
+        </h1>
+            <p>Log <button (click)="log=''">Clear</button></p>
             <pre>{{log}}</pre>
         </div>`,
-    styles: ['.box {max-width: 450px; padding: 5px; }']
+    styles: ['box {max-width: 450px; padding: 5px; }' +
+    'profile-page {margin: 0 0 0 55px; width: auto; font-family: helvetica, arial, sans-serif; line-height: 1.2em;' +
+    'profile-left {width: 925px;float: left;' +
+    'h1 {height: 55px; line-height: 55px; text-transform: uppercase; font-size: 15px; font-weight: 700; padding-left: 30px;}' +
+    'button {background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center;text-decoration: none;display: inline-block;font-size: 16px;']
 })
 export class AppComponent {
 
-    fontcolor = 'Red';
+    fontcolor = 'lightgreen';
     log='';
 
     logText(value: string): void {
