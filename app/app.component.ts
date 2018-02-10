@@ -19,13 +19,10 @@ import { Component } from '@angular/core';
         </style>
         <div class="well profile-page">
         <p>Example</p>
-            <input #textbox type="text" ngModel="fontcolor" required>
-            <button class='button' (click)="logText(textbox.value)">Update Color</button>
+            <input (keyup)="setColor($event)" required>
         <h1 #part1 class="box" [style.color]="fontcolor">
-            Hello World! 
+            Hello World!
         </h1>
-            <p>Log <button (click)="log=''">Clear</button></p>
-            <pre>{{log}}</pre>
         </div>`,
     styles: ['box {max-width: 450px; padding: 5px; }' +
     'profile-page {margin: 0 0 0 55px; width: auto; font-family: helvetica, arial, sans-serif; line-height: 1.2em;' +
@@ -35,11 +32,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-    fontcolor = 'lightgreen';
-    log='';
+    fontcolor = 'green';
 
-    logText(value: string): void {
-        this.fontcolor = value;
-        this.log += `Text changed to '${this.fontcolor}'\n`;
+    setColor(event: KeyboardEvent): void {
+        this.fontcolor = (<HTMLInputElement>event.target).value;
     }
 }
